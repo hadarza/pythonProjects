@@ -104,3 +104,4 @@ m = Maze()
 p = SearchableMaze(m)
 
 print(p.search())
+
