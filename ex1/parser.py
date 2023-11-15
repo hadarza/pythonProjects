@@ -111,3 +111,21 @@ def parser(infix_expression):
             raise ValueError("Invalid postfix expression")
     except (ValueError, ZeroDivisionError, IndexError):
         raise ValueError("Invalid postfix expression")
+
+def minus_reducer(tokens):
+    result = []
+    i=0
+    while i < len(tokens):
+        token = tokens[i]
+        if token == '-' and (i == 0 or tokens[i-1] in '+-*/('):
+            result.append('-' + tokens[i+1])
+            i+=1
+        else:
+            result.append(token)
+        i+=1
+    return result
+
+def isAdigit(token):
+    if re.match(r'^-?\d+(\.\d+)?$', token):
+        return True
+    return False
